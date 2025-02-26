@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>99X Cafe - Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #0a0a14;
+            color: #e0e0ff;
+            overflow-x: hidden;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 5px #00f8ff, 0 0 10px #00f8ff, 0 0 20px #00f8ff;
+            color: #ffffff;
+        }
+        
+        .glass-card {
+            background: rgba(18, 20, 40, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 195, 255, 0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0e1538 0%, #1a237e 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/600') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #00c3ff, #ffff1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            color: #a4c2f4;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(90deg, #00c3ff, #7d40ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.5);
+        }
+        
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0, 195, 255, 0.7);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .floating-objects {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .floating-object {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 195, 255, 0.5);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Header styling */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 195, 255, 0.2);
+        }
+        
+        .nav-logo {
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nav-logo::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #00c3ff, #7d40ff);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-logo:hover::after {
+            width: 100%;
+        }
+        
+        /* Loading Modal */
+        .loading-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            z-index: 10000;
+        }
+        
+        .loading-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .loading-box {
+            width: 200px;
+            height: 200px;
+            background: rgba(18, 20, 40, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 195, 255, 0.5);
+            overflow: hidden;
+        }
+        
+        .loading-box::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(90deg, transparent, rgba(0, 195, 255, 0.5), transparent);
+            transform: rotate(45deg);
+            animation: shine 1.5s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                left: -150%;
+                top: -150%;
+            }
+            100% {
+                left: 150%;
+                top: 150%;
+            }
+        }
+        
+        .loading-content {
+            width: 96%;
+            height: 96%;
+            background: rgba(10, 10, 20, 0.9);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .loading-ring {
+            width: 80px;
+            height: 80px;
+            border: 3px solid transparent;
+            border-top: 3px solid #00c3ff;
+            border-right: 3px solid #7d40ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .loading-ring::before {
+            content: "";
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            right: 7px;
+            bottom: 7px;
+            border: 3px solid transparent;
+            border-bottom: 3px solid #00c3ff;
+            border-left: 3px solid #7d40ff;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite reverse;
+        }
+        
+        .loading-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite alternate;
+            margin-top: 10px;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+                text-shadow: 0 0 5px rgba(0, 195, 255, 0.5);
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(0, 195, 255, 1);
+            }
+        }
+        
+        /* Features section */
+        .features-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #0a0a14 0%, #141428 100%);
+        }
+        
+        .feature-card {
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 195, 255, 0.2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #00c3ff, #7d40ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 195, 255, 0.3);
+        }
+        
+        /* Footer styling */
+        .footer {
+            background: linear-gradient(0deg, #0a0a14 0%, #141428 100%);
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00c3ff, #7d40ff, transparent);
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(45deg, #00c3ff, #7d40ff);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container py-4 px-6 flex justify-between items-center">
+            <h2 class="nav-logo text-3xl text-white hover:cursor-pointer flex items-center">
+                <span class="neon-text">99X</span>
+                <span class="ml-2 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Cafe</span>
+                <span class="ml-2 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">POS</span>
+            </h2>
+            <div class="hidden md:flex space-x-6">
+                <button class="cta-button" onclick="showLoading(event)">
+                    Enter to the POS!
+                    <i class="fas fa-arrow-right ml-2 color: #00c3ff"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="floating-objects" id="floatingObjects"></div>
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold">Welcome to 99X Cafe POS</h1>
+                <p class="mb-8">Manage the 99X Cafe with this POS System easily</p>
+                <button class="cta-button" onclick="showLoading(event)">
+                    Enter to the POS!
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+        
+        <section class="features-section">
+            <div class="container mx-auto">
+                <h2 class="text-center text-4xl font-bold mb-12 neon-text">Our Futuristic Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="feature-card glass-card p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-coffee text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cyan-300">Easy Management</h3>
+                        <p class="text-gray-300">Effortless management with our intuitive POS system.</p>
+                    </div>
+                    
+                    <div class="feature-card glass-card p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cyan-300">Visuallised Details</h3>
+                        <p class="text-gray-300">Visualised details for a better understanding of 99X Cafe.</p>
+                    </div>
+                    
+                    <div class="feature-card glass-card p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-vr-cardboard text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cyan-300">Booking Facility</h3>
+                        <p class="text-gray-300">Effortless Bookings with our intuitive POS system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Futuristic Loading Modal -->
+    <div id="loadingModal" class="loading-modal">
+        <div class="loading-box">
+            <div class="loading-content">
+                <div class="loading-ring"></div>
+                <span class="loading-text">Loading, Please Wait ...</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-3 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">99X Cafe</h3>
+                        <p class="text-gray-400 max-w-md">Where technology meets exceptional taste. Experience the future of coffee today.</p>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://www.youtube.com/@99xio" class="social-icon">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+                        <a href="https://www.instagram.com/99x.io/?hl=en" class="social-icon">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/99xio/" class="social-icon">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-500">&copy; 2025 99X Cafe. All rights reserved.</p>
+                    <p class="text-gray-500">Built with  <i class="fas fa-heart text-red-500"></i>  by Ashan Senadheera.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating objects
+        function createFloatingObjects() {
+            const container = document.getElementById('floatingObjects');
+            const numObjects = 20;
+            
+            for (let i = 0; i < numObjects; i++) {
+                const obj = document.createElement('div');
+                obj.className = 'floating-object';
+                
+                // Random positions
+                const size = Math.random() * 15 + 5;
+                const left = Math.random() * 100;
+                
+                obj.style.width = size + 'px';
+                obj.style.height = size + 'px';
+                obj.style.left = left + '%';
+                obj.style.bottom = '-50px';
+                obj.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                obj.style.animation = `float ${duration}s linear infinite`;
+                obj.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(obj);
+            }
+        }
+        
+        // Loading function
+        function showLoading(event) {
+            event.preventDefault(); // Prevent default navigation
+            let modal = document.getElementById("loadingModal");
+            modal.classList.add("active");
+            
+            // Change loading text over time
+            const loadingText = document.querySelector('.loading-text');
+            const texts = ['Initializing', 'Connecting', 'Loading', 'Entering', 'Please Wait'];
+            let index = 4;
+            
+            const textInterval = setInterval(() => {
+                index = (index + 1) % texts.length;
+                loadingText.textContent = texts[index];
+            }, 500);
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                clearInterval(textInterval);
+                modal.classList.remove("active");
+                window.location.href = "/app/";
+            }, 15000); // 15s delay
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            createFloatingObjects();
+        });
+    </script>
+</body>
+</html>
