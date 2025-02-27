@@ -43,6 +43,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            display: none;
+
+            @media screen and (min-width: 768px) {
+                display:flex;
+            }
         }
         
         .hero::before {
@@ -71,6 +76,7 @@
             margin-bottom: 1.5rem;
             background: linear-gradient(to right, #00c3ff, #ffff1c);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
         }
@@ -415,6 +421,18 @@
                 </button>
             </div>
         </section>
+
+        <section class="hero-mobile block md:hidden">
+            <div class="floating-objects" id="floatingObjects"></div>
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold">Welcome to 99X Cafe POS</h1>
+                <p class="mb-8">Manage the 99X Cafe with this POS System easily</p>
+                <button class="cta-button" onclick="showLoading(event)">
+                    Enter to the POS!
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
         
         <section class="features-section">
             <div class="container mx-auto">
@@ -481,8 +499,9 @@
                 </div>
                 
                 <div class="mt-8 text-center">
-                    <p class="text-gray-500">&copy; 2025 99X Cafe. All rights reserved.</p>
+                    <p class="text-gray-500">&copy; 2025 99X Cafe by 99X Asia - Colombo Office. All rights reserved.</p>
                     <p class="text-gray-500">Built with  <i class="fas fa-heart text-red-500"></i>  by Ashan Senadheera.</p>
+                    <p class="text-gray-500">Version 1.0.0 ~ SNAPSHOT</p>
                 </div>
             </div>
         </div>

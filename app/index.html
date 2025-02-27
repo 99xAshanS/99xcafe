@@ -1,71 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>99x Cafe - Futuristic Management System</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>99X Cafe - Management POS</title>
 
-  <!-- Futuristic custom styles -->
+  <!-- Tailwind CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
   <style>
-    /* Glassmorphism base styles */
-    .glass {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1rem;
-    }
-    
-    .neo-gradient {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Futuristic animations */
-    .hover-translate {
-      transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    }
-    
-    .hover-translate:hover {
-      transform: translateY(-4px);
-    }
-    
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5); }
-      100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8), 0 0 40px rgba(118, 75, 162, 0.4); }
-    }
-    
-    .glow-effect {
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    
-    @keyframes pulse {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; }
-    }
-    
-    .pulse-effect {
-      animation: pulse 1.5s ease-in-out infinite alternate;
-    }
-    
-    /* Dark theme base */
+    /******************************************
+     * Futuristic / glass styles
+     *****************************************/
     body {
       background: #0f172a;
       color: #e2e8f0;
       font-family: 'Inter', sans-serif;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(120, 80, 210, 0.1) 0%, transparent 25%),
-        radial-gradient(circle at 85% 85%, rgba(40, 120, 200, 0.1) 0%, transparent 25%);
       min-height: 100vh;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(120,80,210,0.1) 0%, transparent 25%),
+        radial-gradient(circle at 85% 85%, rgba(40,120,200,0.1) 0%, transparent 25%);
     }
-    
-    /* Card background overlay */
+    .glass {
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+    }
+    .neo-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .hover-translate {
+      transition: transform 0.3s;
+    }
+    .hover-translate:hover {
+      transform: translateY(-4px);
+    }
     .card-overlay {
       position: relative;
       overflow: hidden;
     }
-    
     .card-overlay::before {
       content: "";
       position: absolute;
@@ -79,52 +54,22 @@
       pointer-events: none;
       z-index: 0;
     }
-    
     .card-overlay:hover::before {
       opacity: 1;
     }
-    
-    /* Futuristic scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: #1e293b;
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 3px;
-    }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background: #667eea;
-    }
-    
-    /* Floating labels for inputs */
     .float-label {
       position: relative;
     }
-    
-    .float-label input, 
+    .float-label input,
     .float-label select {
-      background: rgba(15, 23, 42, 0.5);
-      border-color: rgba(75, 85, 99, 0.5);
+      background: rgba(15,23,42,0.5);
+      border-color: rgba(75,85,99,0.5);
       color: #e2e8f0;
       border-radius: 0.5rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
       padding-top: 1.25rem;
       padding-bottom: 0.5rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    
-    .float-label input:focus, 
-    .float-label select:focus {
-      border-color: #667eea;
-      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
-    }
-    
     .float-label label {
       position: absolute;
       left: 0.85rem;
@@ -133,30 +78,18 @@
       opacity: 0.6;
       pointer-events: none;
     }
-    
-    /* Dashboard cards */
     .dashboard-card {
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    
     .dashboard-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
     }
-    
-    /* Focus outlines */
-    button:focus, a:focus, input:focus, select:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
-    }
-    
-    /* Status indicators */
     .status-available {
-      color: #10b981;
+      color: #10b981; /* green */
     }
-    
     .status-reserved {
-      color: #f59e0b;
+      color: #f59e0b; /* yellow */
     }
   </style>
 </head>
@@ -164,39 +97,40 @@
   <!-- Navbar -->
   <nav class="glass fixed w-full z-50 px-6 py-4">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 pulse-effect">
-        99x Cafe
+      <div class="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        99X Cafe
       </div>
       <div class="hidden md:flex space-x-6">
-        <button onclick="showSection('dashboard')" class="text-gray-300 hover:text-white transition-colors">Dashboard</button>
-        <button onclick="showSection('categoriesSection')" class="text-gray-300 hover:text-white transition-colors">Categories</button>
-        <button onclick="showSection('itemsSection')" class="text-gray-300 hover:text-white transition-colors">Items</button>
-        <button onclick="showSection('seatsSection')" class="text-gray-300 hover:text-white transition-colors">Seats</button>
-        <button onclick="showSection('cashiersSection')" class="text-gray-300 hover:text-white transition-colors">Cashiers</button>
-        <button onclick="showSection('bookingsSection')" class="text-gray-300 hover:text-white transition-colors">Bookings</button>
-        <button onclick="showSection('ordersSection')" class="text-gray-300 hover:text-white transition-colors">Orders</button>
-        <button onclick="exitApp()" class="cta-button hover:bg-red-500 text-red-500 hover:text-white w-12 h-6 bg-white rounded-full exit-button">Exit</button>
+        <button onclick="showSection('dashboard')" class="text-gray-300 hover:text-white">Dashboard</button>
+        <button onclick="showSection('categoriesSection')" class="text-gray-300 hover:text-white">Categories</button>
+        <button onclick="showSection('itemsSection')" class="text-gray-300 hover:text-white">Items</button>
+        <button onclick="showSection('seatsSection')" class="text-gray-300 hover:text-white">Seats</button>
+        <button onclick="showSection('cashiersSection')" class="text-gray-300 hover:text-white">Cashiers</button>
+        <button onclick="showSection('bookingsSection')" class="text-gray-300 hover:text-white">Bookings</button>
+        <button onclick="showSection('ordersSection')" class="text-gray-300 hover:text-white">Orders</button>
       </div>
       <div class="md:hidden">
         <button id="mobileMenuBtn" class="text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </div>
     </div>
   </nav>
-  
-  <!-- Mobile menu (hidden by default) -->
+
+  <!-- Mobile menu -->
   <div id="mobileMenu" class="hidden fixed z-40 inset-0 bg-gray-900/95 pt-20">
     <div class="flex flex-col items-center space-y-6 py-8">
-      <button onclick="showSection('dashboard'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Dashboard</button>
-      <button onclick="showSection('categoriesSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Categories</button>
-      <button onclick="showSection('itemsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Items</button>
-      <button onclick="showSection('seatsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Seats</button>
-      <button onclick="showSection('cashiersSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Cashiers</button>
-      <button onclick="showSection('bookingsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Bookings</button>
-      <button onclick="showSection('ordersSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white transition-colors">Orders</button>
+      <button onclick="showSection('dashboard'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Dashboard</button>
+      <button onclick="showSection('categoriesSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Categories</button>
+      <button onclick="showSection('itemsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Items</button>
+      <button onclick="showSection('seatsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Seats</button>
+      <button onclick="showSection('cashiersSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Cashiers</button>
+      <button onclick="showSection('bookingsSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Bookings</button>
+      <button onclick="showSection('ordersSection'); closeMobileMenu()" class="text-xl text-gray-300 hover:text-white">Orders</button>
     </div>
   </div>
 
@@ -204,78 +138,231 @@
   <div class="container mx-auto pt-24 px-4 pb-16">
     <!-- Dashboard -->
     <section id="dashboard">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Cafe Management Dashboard</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Cafe Management Dashboard
+      </h1>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="glass p-6 rounded-xl hover-translate card-overlay dashboard-card">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold">Categories</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 11H5m14
+                       0a2 2 0 012
+                       2v6a2 2 0
+                       01-2 2H5a2
+                       2 0 01-2-2v-6a2
+                       2 0
+                       012-2m14
+                       0V9a2 2 0
+                       00-2-2M5
+                       11V9a2 2 0
+                       012-2m0
+                       0V5a2 2 0
+                       012-2h6a2
+                       2 0 012 2v2M7
+                       7h10"/>
             </svg>
           </div>
           <div class="text-3xl font-bold text-blue-400" id="dashboardCategoriesCount">0</div>
           <div class="mt-4">
-            <button onclick="showSection('categoriesSection')" class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect text-sm">
+            <button onclick="showSection('categoriesSection')"
+                    class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90
+                           transition-all duration-300 hover-translate text-sm">
               Manage Categories
             </button>
           </div>
         </div>
-        
         <div class="glass p-6 rounded-xl hover-translate card-overlay dashboard-card">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold">Menu Items</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12
+                       6.253v13m0-13C10.832
+                       5.477 9.246 5
+                       7.5 5S4.168
+                       5.477 3
+                       6.253v13C4.168
+                       18.477 5.754
+                       18 7.5
+                       18s3.332.477
+                       4.5
+                       1.253m0-13C13.168
+                       5.477 14.754
+                       5
+                       16.5
+                       5c1.747
+                       0
+                       3.332.477
+                       4.5
+                       1.253v13C19.832
+                       18.477
+                       18.247
+                       18
+                       16.5
+                       18c-1.746
+                       0-3.332.477-4.5
+                       1.253"/>
             </svg>
           </div>
           <div class="text-3xl font-bold text-purple-400" id="dashboardItemsCount">0</div>
           <div class="mt-4">
-            <button onclick="showSection('itemsSection')" class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect text-sm">
+            <button onclick="showSection('itemsSection')"
+                    class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90
+                           transition-all duration-300 hover-translate text-sm">
               Manage Items
             </button>
           </div>
         </div>
-        
         <div class="glass p-6 rounded-xl hover-translate card-overlay dashboard-card">
           <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-semibold">Cafe Seats</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4.354a4
+                       4 0
+                       110
+                       5.292M15
+                       21H3v-1a6
+                       6 0
+                       0112
+                       0v1zm0
+                       0h6v-1a6
+                       6 0
+                       00-9-5.197M13
+                       7a4 4 0
+                       11-8 0
+                       4 4
+                       0
+                       018 0z"/>
             </svg>
           </div>
           <div class="text-3xl font-bold text-indigo-400" id="dashboardSeatsCount">0</div>
           <div class="mt-4">
-            <button onclick="showSection('seatsSection')" class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect text-sm">
+            <button onclick="showSection('seatsSection')"
+                    class="neo-gradient text-white px-6 py-2 rounded-full hover:opacity-90
+                           transition-all duration-300 hover-translate text-sm">
               Manage Seats
             </button>
           </div>
         </div>
       </div>
-      
       <div class="glass rounded-xl p-6 my-8 hover-translate card-overlay">
         <h2 class="text-2xl font-semibold mb-4">Quick Actions</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <button onclick="showSection('ordersSection')" class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg flex flex-col items-center transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          <button onclick="showSection('ordersSection')"
+                  class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg
+                         flex flex-col items-center transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-green-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4
+                       2M7
+                       13h10l4-8H5.4M7
+                       13L5.4
+                       5M7
+                       13l-2.293
+                       2.293c-.63.63-.184
+                       1.707.707
+                       1.707H17m0
+                       0a2
+                       2 0
+                       100 4 2 2 0
+                       000-4zm-8
+                       2a2 2
+                       0
+                       11-4 0 2 2
+                       0
+                       014
+                       0z"/>
             </svg>
             New Order
           </button>
-          <button onclick="showSection('bookingsSection')" class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg flex flex-col items-center transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <button onclick="showSection('bookingsSection')"
+                  class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg
+                         flex flex-col items-center transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-yellow-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8
+                       7V3m8
+                       4V3m-9
+                       8h10M5
+                       21h14a2
+                       2 0
+                       002-2V7a2
+                       2 0
+                       00-2-2H5a2
+                       2 0
+                       00-2
+                       2v12a2
+                       2 0
+                       002
+                       2z"/>
             </svg>
             New Booking
           </button>
-          <button onclick="showSection('itemsSection')" class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg flex flex-col items-center transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <button onclick="showSection('itemsSection')"
+                  class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg
+                         flex flex-col items-center transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-red-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12
+                       9v3m0
+                       0v3m0-3h3m-3
+                       0H9m12
+                       0a9 9 0
+                       11-18
+                       0
+                       9 9 0
+                       0118
+                       0z"/>
             </svg>
             Add Item
           </button>
-          <button onclick="showSection('cashiersSection')" class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg flex flex-col items-center transition-all duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+          <button onclick="showSection('cashiersSection')"
+                  class="bg-gray-800/50 hover:bg-gray-700/50 text-white p-4 rounded-lg
+                         flex flex-col items-center transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2 text-blue-400" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17
+                       9V7a2
+                       2
+                       0
+                       00-2-2H5a2
+                       2 0
+                       00-2
+                       2v6a2
+                       2 0
+                       002
+                       2h2m2
+                       4h10a2
+                       2 0
+                       002-2v-6a2
+                       2
+                       0
+                       00-2-2H9a2
+                       2 0
+                       00-2
+                       2v6a2
+                       2
+                       0
+                       002
+                       2zm7-5a2
+                       2
+                       0
+                       11-4
+                       0 2
+                       2
+                       0
+                       014
+                       0z"/>
             </svg>
             Manage Staff
           </button>
@@ -286,27 +373,23 @@
 
     <!-- Categories Section -->
     <section id="categoriesSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Food Categories</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Food Categories
+      </h1>
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
         <form id="categoryForm" class="flex flex-col md:flex-row items-center gap-4">
           <div class="float-label flex-1 w-full">
             <label for="categoryName">Category Name</label>
-            <input 
-              type="text" 
-              id="categoryName" 
-              placeholder="e.g. Beverages, Desserts..." 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="text" id="categoryName"
+                   placeholder="e.g. Beverages, Desserts..."
+                   class="w-full px-4 py-3" required />
           </div>
-          <button 
-            class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect whitespace-nowrap"
-          >
+          <button class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90
+                         transition-all duration-300 hover-translate whitespace-nowrap">
             Add/Update Category
           </button>
         </form>
       </div>
-      
       <div class="glass rounded-xl overflow-hidden">
         <table class="w-full">
           <thead class="neo-gradient text-white">
@@ -324,49 +407,33 @@
 
     <!-- Items Section -->
     <section id="itemsSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Food Items</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Food Items
+      </h1>
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
         <form id="itemForm" class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div class="float-label">
             <label for="itemName">Item Name</label>
-            <input 
-              type="text" 
-              id="itemName" 
-              placeholder="Enter item name" 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="text" id="itemName" placeholder="Enter item name"
+                   class="w-full px-4 py-3" required />
           </div>
           <div class="float-label">
             <label for="itemPrice">Price ($)</label>
-            <input 
-              type="number" 
-              id="itemPrice" 
-              placeholder="0.00" 
-              step="0.01"
-              min="0"
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="number" id="itemPrice" placeholder="0.00" step="0.01" min="0"
+                   class="w-full px-4 py-3" required />
           </div>
           <div class="float-label">
             <label for="itemCategory">Category</label>
-            <select 
-              id="itemCategory" 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            >
+            <select id="itemCategory" class="w-full px-4 py-3" required>
               <option value="">Select Category</option>
             </select>
           </div>
-          <button 
-            class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect self-end"
-          >
+          <button class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all
+                         duration-300 hover-translate self-end">
             Add/Update Item
           </button>
         </form>
       </div>
-      
       <div class="glass rounded-xl overflow-hidden">
         <table class="w-full">
           <thead class="neo-gradient text-white">
@@ -386,27 +453,23 @@
 
     <!-- Seats Section -->
     <section id="seatsSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Seats</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Seats
+      </h1>
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
         <form id="seatForm" class="flex flex-col md:flex-row items-center gap-4">
           <div class="float-label flex-1 w-full">
             <label for="seatName">Seat Name/Number</label>
-            <input 
-              type="text" 
-              id="seatName" 
-              placeholder="e.g. Table 1, Booth A..." 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="text" id="seatName"
+                   placeholder="e.g. Table 1, Booth A..."
+                   class="w-full px-4 py-3" required />
           </div>
-          <button 
-            class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect whitespace-nowrap"
-          >
+          <button class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all
+                         duration-300 hover-translate whitespace-nowrap">
             Add/Update Seat
           </button>
         </form>
       </div>
-      
       <div class="glass rounded-xl overflow-hidden">
         <table class="w-full">
           <thead class="neo-gradient text-white">
@@ -425,27 +488,23 @@
 
     <!-- Cashiers Section -->
     <section id="cashiersSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Cashiers</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Cashiers
+      </h1>
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
         <form id="cashierForm" class="flex flex-col md:flex-row items-center gap-4">
           <div class="float-label flex-1 w-full">
             <label for="cashierName">Cashier Name</label>
-            <input 
-              type="text" 
-              id="cashierName" 
-              placeholder="Enter staff name" 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="text" id="cashierName"
+                   placeholder="Enter staff name"
+                   class="w-full px-4 py-3" required />
           </div>
-          <button 
-            class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect whitespace-nowrap"
-          >
+          <button class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all
+                         duration-300 hover-translate whitespace-nowrap">
             Add/Update Cashier
           </button>
         </form>
       </div>
-      
       <div class="glass rounded-xl overflow-hidden">
         <table class="w-full">
           <thead class="neo-gradient text-white">
@@ -463,49 +522,35 @@
 
     <!-- Bookings Section -->
     <section id="bookingsSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Event Bookings</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Event Bookings
+      </h1>
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
         <form id="bookingForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div class="float-label">
             <label for="bookingName">Booking Name/Description</label>
-            <input 
-              type="text" 
-              id="bookingName" 
-              placeholder="Enter event details" 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="text" id="bookingName" placeholder="Enter event details"
+                   class="w-full px-4 py-3" required />
           </div>
           <div class="float-label">
             <label for="bookingDate">Event Date</label>
-            <input 
-              type="date" 
-              id="bookingDate" 
-              class="w-full px-4 py-3 focus:outline-none"
-              required
-            />
+            <input type="date" id="bookingDate"
+                   class="w-full px-4 py-3" required />
           </div>
           <div class="float-label">
             <label for="bookingSeatsNeeded">Number of Seats</label>
-            <input
-              type="number"
-              id="bookingSeatsNeeded"
-              placeholder="How many seats needed?"
-              class="w-full px-4 py-3 focus:outline-none"
-              min="1"
-              required
-            />
+            <input type="number" id="bookingSeatsNeeded"
+                   placeholder="How many seats needed?"
+                   class="w-full px-4 py-3" min="1" required />
           </div>
           <div class="md:col-span-3">
-            <button 
-              class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect w-full md:w-auto"
-            >
+            <button class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90
+                           transition-all duration-300 hover-translate glow-effect w-full md:w-auto">
               Add/Update Booking
             </button>
           </div>
         </form>
       </div>
-      
       <div class="glass rounded-xl overflow-hidden">
         <table class="w-full">
           <thead class="neo-gradient text-white">
@@ -525,722 +570,664 @@
 
     <!-- Orders Section -->
     <section id="ordersSection" class="hidden">
-      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Order Management</h1>
+      <h1 class="text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+        Order Management
+      </h1>
+
+      <!-- Build an order in memory -->
       <div class="glass p-6 rounded-xl mb-6 hover-translate card-overlay">
-        <form id="orderForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+        <form id="orderLineForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
           <div class="float-label">
-            <label for="orderItem">Select Item</label>
-            <select 
-              id="orderItem" 
-              class="w-full px-4 py-3 focus:outline-none"
-            >
-              <option value="">Choose Menu Item</option>
+            <label for="orderItemSelect">Select Item</label>
+            <select id="orderItemSelect" class="w-full px-4 py-3">
+              <option value="">Choose Item</option>
             </select>
           </div>
           <div class="float-label">
             <label for="orderQuantity">Quantity</label>
-            <input 
-              type="number" 
-              id="orderQuantity" 
-              placeholder="Quantity" 
-              value="1"
-              min="1"
-              class="w-full px-4 py-3 focus:outline-none"
-            />
+            <input type="number" id="orderQuantity" class="w-full px-4 py-3"
+                   placeholder="1" min="1" value="1"/>
           </div>
-          <div class="float-label">
-            <label for="orderSeat">Select Seat</label>
-            <select 
-              id="orderSeat" 
-              class="w-full px-4 py-3 focus:outline-none"
-            >
-              <option value="">Choose Seat</option>
-            </select>
-          </div>
-          <button 
-            class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect"
-          >
-            Add to Order
+          <button type="submit"
+                  class="neo-gradient text-white px-4 py-3 rounded-full hover:opacity-90
+                         transition-all duration-300 hover-translate">
+            Add Line
           </button>
         </form>
+
+        <div class="mt-4 glass p-4 rounded-md">
+          <h3 class="text-xl font-semibold mb-2">Current Order Lines</h3>
+          <table class="w-full">
+            <thead>
+              <tr class="text-gray-300 border-b border-gray-700">
+                <th class="py-2 text-left">Item</th>
+                <th class="py-2 text-left">Price</th>
+                <th class="py-2 text-left">Qty</th>
+                <th class="py-2 text-left">Subtotal</th>
+                <th class="py-2 text-left">Action</th>
+              </tr>
+            </thead>
+            <tbody id="orderLinesTable" class="divide-y divide-gray-700"></tbody>
+          </table>
+          <div class="mt-4 flex justify-between">
+            <div class="float-label w-1/2 md:w-1/3">
+              <label for="orderSeatSelect">Seat (Optional)</label>
+              <select id="orderSeatSelect" class="w-full px-4 py-3">
+                <option value="">No seat assigned</option>
+              </select>
+            </div>
+            <p class="text-lg font-bold self-center">Total: 
+              <span id="orderInProgressTotal" class="text-blue-400">$0.00</span>
+            </p>
+          </div>
+          <div class="mt-4">
+            <button id="submitOrderBtn"
+                    class="neo-gradient text-white px-6 py-3 rounded-full hover:opacity-90
+                           transition-all duration-300 hover-translate font-bold">
+              Submit Order
+            </button>
+          </div>
+        </div>
       </div>
-      
-      <div class="glass rounded-xl overflow-hidden mb-6">
+
+      <!-- Existing orders list -->
+      <div class="glass p-6 rounded-xl hover-translate card-overlay">
+        <h3 class="text-2xl font-semibold mb-4">Existing Orders</h3>
         <table class="w-full">
           <thead class="neo-gradient text-white">
             <tr>
-              <th class="px-6 py-4 text-left">Item</th>
-              <th class="px-6 py-4 text-left">Quantity</th>
+              <th class="px-6 py-4 text-left">Order ID</th>
               <th class="px-6 py-4 text-left">Seat</th>
-              <th class="px-6 py-4 text-left">Subtotal</th>
-              <th class="px-6 py-4 text-left">Action</th>
+              <th class="px-6 py-4 text-left">Total</th>
+              <th class="px-6 py-4 text-left">Actions</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-700" id="orderItemsTable"></tbody>
+          <tbody id="ordersTable" class="divide-y divide-gray-700"></tbody>
         </table>
-      </div>
-      
-      <!-- Order summary and print -->
-      <div class="glass p-6 rounded-xl flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-2xl">Total: <span id="orderTotal" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">$0.00</span></p>
-        <button 
-          onclick="printOrder()" 
-          class="neo-gradient text-white px-8 py-3 rounded-full hover:opacity-90 transition-all duration-300 hover-translate glow-effect flex items-center"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-          </svg>
-          Print Order
-        </button>
       </div>
     </section>
     <!-- End Orders Section -->
-    
-  </div> <!-- End Main container -->
 
-  <!-- Script -->
+  </div> <!-- End container -->
+
   <script>
-    /******************************/
-    /*** Exit Button ***/
-    /******************************/
-    function exitApp() {
-      if (confirm('Are you sure you want to exit the application?')) {
-        // Save any unsaved changes to localStorage
-        localStorage.setItem('categories', JSON.stringify(categories));
-        localStorage.setItem('items', JSON.stringify(items)); 
-        localStorage.setItem('seats', JSON.stringify(seats));
-        localStorage.setItem('bookings', JSON.stringify(bookings));
-        localStorage.setItem('cashiers', JSON.stringify(cashiers));
-        
-        // Redirect to index
-        window.location.href = '/index.html';
-      }
+    /***************************************************/
+    /*** 1) Basic Setup and Show/Hide Sections *********/
+    /***************************************************/
+    const apiBase = ''; // same-origin relative API calls
+    function showSection(sectionId){
+      document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+      closeMobileMenu();
+      if(sectionId==='dashboard') updateDashboard();
     }
-    /****************************/
-    /*** Data & Local Storage ***/
-    /****************************/
-    let categories = JSON.parse(localStorage.getItem('categories')) || [];
-    let items = JSON.parse(localStorage.getItem('items')) || [];
-    let seats = JSON.parse(localStorage.getItem('seats')) || [];
-    // Ensure seats have isReserved property
-    seats = seats.map(s => ({...s, isReserved: s.isReserved || false}));
-
-    let cashiers = JSON.parse(localStorage.getItem('cashiers')) || [];
-    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-    // Ensure bookings have seatCount and reservedSeats
-    bookings = bookings.map(b => ({
-      ...b,
-      seatCount: b.seatCount || 0,
-      reservedSeats: b.reservedSeats || []
-    }));
-
-    let orders = []; // We'll keep the current order in memory only.
-
-    // For Editing
-    let editCategoryId = null;
-    let editItemId = null;
-    let editSeatId = null;
-    let editCashierId = null;
-    let editBookingId = null;
-
-    /**********************/
-    /*** Mobile Menu ******/
-    /**********************/
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenuBtn.addEventListener('click',() => {
       mobileMenu.classList.toggle('hidden');
     });
-    
     function closeMobileMenu() {
       mobileMenu.classList.add('hidden');
     }
 
-    /**********************/
-    /*** Show Sections ****/
-    /**********************/
-    function showSection(sectionId) {
-      // Hide all sections
-      document.querySelectorAll('section').forEach(sec => {
-        sec.classList.add('hidden');
-      });
-      // Show the chosen section
-      document.getElementById(sectionId).classList.remove('hidden');
-      // Close mobile menu if it's open
-      closeMobileMenu();
-      
-      // If we go to the dashboard, update counts
-      if (sectionId === 'dashboard') {
-        updateDashboard();
-      }
+    /***************************************************/
+    /*** 2) Global Data Arrays *************************/
+    /***************************************************/
+    let categoriesData = [];
+    let itemsData = [];
+    let seatsData = [];
+    let cashiersData = [];
+    let bookingsData = [];
+    let ordersData = []; // for listing existing orders
+
+    /***************************************************/
+    /*** 3) Dashboard **********************************/
+    /***************************************************/
+    function updateDashboard(){
+      document.getElementById('dashboardCategoriesCount').textContent = categoriesData.length;
+      document.getElementById('dashboardItemsCount').textContent = itemsData.length;
+      document.getElementById('dashboardSeatsCount').textContent = seatsData.length;
     }
 
-    // Start with showing the dashboard
-    window.addEventListener('DOMContentLoaded', () => {
-      showSection('dashboard');
-      refreshCategoryOptions();
-      refreshSeatOptions();
-      refreshItemsTable();
-      refreshCategoriesTable();
-      refreshSeatsTable();
-      refreshCashiersTable();
-      refreshBookingsTable();
-
-      // Save possible updated seats, bookings structure back to storage
-      localStorage.setItem('seats', JSON.stringify(seats));
-      localStorage.setItem('bookings', JSON.stringify(bookings));
-    });
-
-    /**************************/
-    /*** Dashboard Updates ****/
-    /**************************/
-    function updateDashboard() {
-      document.getElementById('dashboardCategoriesCount').innerText = categories.length;
-      document.getElementById('dashboardItemsCount').innerText = items.length;
-      document.getElementById('dashboardSeatsCount').innerText = seats.length;
+    /***************************************************/
+    /*** 4) Categories *********************************/
+    /***************************************************/
+    let editCategoryId=null;
+    async function refreshCategories(){
+      const res=await fetch(apiBase+'/api/categories');
+      categoriesData=await res.json();
+      renderCategoriesTable();
+      renderCategoryOptions();
     }
-
-    /**************************/
-    /*** Category Functions ***/
-    /**************************/
-    const categoryForm = document.getElementById('categoryForm');
-    categoryForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nameInput = document.getElementById('categoryName');
-      const nameValue = nameInput.value.trim();
-      if (!nameValue) return;
-
-      if (editCategoryId !== null) {
-        // Update existing
-        const index = categories.findIndex(cat => cat.id === editCategoryId);
-        categories[index].name = nameValue;
-        editCategoryId = null;
-      } else {
-        // Add new
-        const newCategory = {
-          id: Date.now(),
-          name: nameValue
-        };
-        categories.push(newCategory);
-      }
-
-      localStorage.setItem('categories', JSON.stringify(categories));
-      nameInput.value = '';
-      refreshCategoriesTable();
-      refreshCategoryOptions();
-    });
-
-    function refreshCategoriesTable() {
-      const tableBody = document.getElementById('categoriesTable');
-      tableBody.innerHTML = '';
-      categories.forEach((cat, index) => {
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${index + 1}</td>
+    function renderCategoriesTable(){
+      const tb=document.getElementById('categoriesTable');
+      tb.innerHTML='';
+      categoriesData.forEach((cat,idx)=>{
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${idx+1}</td>
           <td class="px-6 py-4">${cat.name}</td>
           <td class="px-6 py-4 flex space-x-2">
-            <button class="text-blue-400 hover:text-blue-300 transition-colors" onclick="editCategory(${cat.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </button>
-            <button class="text-red-400 hover:text-red-300 transition-colors" onclick="deleteCategory(${cat.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+            <button class="text-blue-400 hover:text-blue-300" onclick="editCategory(${cat.id},'${cat.name}')">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteCategory(${cat.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
     }
-
-    function editCategory(id) {
-      const category = categories.find(c => c.id === id);
-      editCategoryId = id;
-      document.getElementById('categoryName').value = category.name;
+    function renderCategoryOptions(){
+      const sel=document.getElementById('itemCategory');
+      sel.innerHTML='<option value="">Select Category</option>';
+      categoriesData.forEach(cat=>{
+        const op=document.createElement('option');
+        op.value=cat.id;
+        op.textContent=cat.name;
+        sel.appendChild(op);
+      });
+    }
+    function editCategory(id,name){
+      editCategoryId=id;
+      document.getElementById('categoryName').value=name;
       showSection('categoriesSection');
     }
-
-    function deleteCategory(id) {
-      if (!confirm('Are you sure you want to delete this category?')) return;
-      categories = categories.filter(c => c.id !== id);
-      localStorage.setItem('categories', JSON.stringify(categories));
-      refreshCategoriesTable();
-      refreshCategoryOptions();
+    async function deleteCategory(id){
+      if(!confirm('Delete this category?'))return;
+      await fetch(apiBase+'/api/categories/'+id,{method:'DELETE'});
+      await refreshCategories();
     }
-
-    function refreshCategoryOptions() {
-      const itemCategorySelect = document.getElementById('itemCategory');
-      itemCategorySelect.innerHTML = '<option value="">Select Category</option>';
-      categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat.id;
-        option.textContent = cat.name;
-        itemCategorySelect.appendChild(option);
-      });
-    }
-
-    /************************/
-    /*** Items Functions ****/
-    /************************/
-    const itemForm = document.getElementById('itemForm');
-    itemForm.addEventListener('submit', (e) => {
+    document.getElementById('categoryForm').addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const nameInput = document.getElementById('itemName');
-      const priceInput = document.getElementById('itemPrice');
-      const categorySelect = document.getElementById('itemCategory');
+      const nameVal=document.getElementById('categoryName').value.trim();
+      if(!nameVal)return;
 
-      const nameValue = nameInput.value.trim();
-      const priceValue = parseFloat(priceInput.value);
-      const categoryValue = categorySelect.value;
-
-      if (!nameValue || isNaN(priceValue) || !categoryValue) return;
-
-      if (editItemId !== null) {
-        // Update existing
-        const index = items.findIndex(it => it.id === editItemId);
-        items[index].name = nameValue;
-        items[index].price = priceValue;
-        items[index].categoryId = parseInt(categoryValue);
-        editItemId = null;
+      if(editCategoryId){
+        await fetch(apiBase+'/api/categories/'+editCategoryId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal})
+        });
+        editCategoryId=null;
       } else {
-        // Add new
-        const newItem = {
-          id: Date.now(),
-          name: nameValue,
-          price: priceValue,
-          categoryId: parseInt(categoryValue)
-        };
-        items.push(newItem);
+        await fetch(apiBase+'/api/categories',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal})
+        });
       }
-
-      localStorage.setItem('items', JSON.stringify(items));
-
-      nameInput.value = '';
-      priceInput.value = '';
-      categorySelect.value = '';
-      refreshItemsTable();
+      document.getElementById('categoryName').value='';
+      await refreshCategories();
     });
 
-    function refreshItemsTable() {
-      const tableBody = document.getElementById('itemsTable');
-      tableBody.innerHTML = '';
-      items.forEach((item, index) => {
-        const category = categories.find(c => c.id === item.categoryId);
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${index + 1}</td>
-          <td class="px-6 py-4">${item.name}</td>
-          <td class="px-6 py-4 text-blue-400">$${item.price.toFixed(2)}</td>
-          <td class="px-6 py-4">${category ? category.name : 'N/A'}</td>
+    /***************************************************/
+    /*** 5) Items **************************************/
+    /***************************************************/
+    let editItemId=null;
+    async function refreshItems(){
+      const res=await fetch(apiBase+'/api/items');
+      itemsData=await res.json();
+      renderItemsTable();
+    }
+    function renderItemsTable(){
+      const tb=document.getElementById('itemsTable');
+      tb.innerHTML='';
+      itemsData.forEach((it,idx)=>{
+        const cat=categoriesData.find(c=>c.id===it.categoryId);
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${idx+1}</td>
+          <td class="px-6 py-4">${it.name}</td>
+          <td class="px-6 py-4 text-blue-400">$${it.price.toFixed(2)}</td>
+          <td class="px-6 py-4">${cat?cat.name:'N/A'}</td>
           <td class="px-6 py-4 flex space-x-2">
-            <button class="text-blue-400 hover:text-blue-300 transition-colors" onclick="editItem(${item.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </button>
-            <button class="text-red-400 hover:text-red-300 transition-colors" onclick="deleteItem(${item.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+            <button class="text-blue-400 hover:text-blue-300" onclick="editItem(${it.id})">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteItem(${it.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
-      refreshOrderItemOptions();
     }
-
-    function editItem(id) {
-      const item = items.find(i => i.id === id);
-      editItemId = id;
-      document.getElementById('itemName').value = item.name;
-      document.getElementById('itemPrice').value = item.price;
-      document.getElementById('itemCategory').value = item.categoryId;
+    function editItem(id){
+      const it=itemsData.find(x=>x.id===id);
+      if(!it)return;
+      editItemId=id;
+      document.getElementById('itemName').value=it.name;
+      document.getElementById('itemPrice').value=it.price;
+      document.getElementById('itemCategory').value=it.categoryId;
       showSection('itemsSection');
     }
-
-    function deleteItem(id) {
-      if (!confirm('Are you sure you want to delete this item?')) return;
-      items = items.filter(i => i.id !== id);
-      localStorage.setItem('items', JSON.stringify(items));
-      refreshItemsTable();
+    async function deleteItem(id){
+      if(!confirm('Delete this item?'))return;
+      await fetch(apiBase+'/api/items/'+id,{method:'DELETE'});
+      await refreshItems();
     }
-
-    function refreshOrderItemOptions() {
-      const orderItemSelect = document.getElementById('orderItem');
-      orderItemSelect.innerHTML = '<option value="">Select Item</option>';
-      items.forEach(it => {
-        const option = document.createElement('option');
-        option.value = it.id;
-        option.textContent = `${it.name} - $${it.price.toFixed(2)}`;
-        orderItemSelect.appendChild(option);
-      });
-    }
-
-    /***********************/
-    /*** Seats Functions ***/
-    /***********************/
-    const seatForm = document.getElementById('seatForm');
-    seatForm.addEventListener('submit', (e) => {
+    document.getElementById('itemForm').addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const seatInput = document.getElementById('seatName');
-      const seatValue = seatInput.value.trim();
-      if (!seatValue) return;
+      const nameVal=document.getElementById('itemName').value.trim();
+      const priceVal=parseFloat(document.getElementById('itemPrice').value);
+      const catVal=parseInt(document.getElementById('itemCategory').value);
+      if(!nameVal||isNaN(priceVal)||!catVal)return;
 
-      if (editSeatId !== null) {
-        const index = seats.findIndex(s => s.id === editSeatId);
-        seats[index].name = seatValue;
-        editSeatId = null;
+      if(editItemId){
+        await fetch(apiBase+'/api/items/'+editItemId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal,price:priceVal,categoryId:catVal})
+        });
+        editItemId=null;
       } else {
-        const newSeat = {
-          id: Date.now(),
-          name: seatValue,
-          isReserved: false
-        };
-        seats.push(newSeat);
+        await fetch(apiBase+'/api/items',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal,price:priceVal,categoryId:catVal})
+        });
       }
-
-      localStorage.setItem('seats', JSON.stringify(seats));
-      seatInput.value = '';
-      refreshSeatsTable();
-      refreshSeatOptions();
+      document.getElementById('itemName').value='';
+      document.getElementById('itemPrice').value='';
+      document.getElementById('itemCategory').value='';
+      await refreshItems();
     });
 
-    function refreshSeatsTable() {
-      const tableBody = document.getElementById('seatsTable');
-      tableBody.innerHTML = '';
-      seats.forEach((seat, index) => {
-        const statusClass = seat.isReserved ? 'status-reserved' : 'status-available';
-        const statusText = seat.isReserved ? 'Reserved' : 'Available';
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${index + 1}</td>
-          <td class="px-6 py-4">${seat.name}</td>
+    /***************************************************/
+    /*** 6) Seats **************************************/
+    /***************************************************/
+    let editSeatId=null;
+    async function refreshSeats(){
+      const res=await fetch(apiBase+'/api/seats');
+      seatsData=await res.json();
+      renderSeatsTable();
+    }
+    function renderSeatsTable(){
+      const tb=document.getElementById('seatsTable');
+      tb.innerHTML='';
+      seatsData.forEach((s,idx)=>{
+        const statusClass=s.isReserved?'status-reserved':'status-available';
+        const statusText=s.isReserved?'Reserved':'Available';
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${idx+1}</td>
+          <td class="px-6 py-4">${s.name}</td>
           <td class="px-6 py-4 ${statusClass} font-semibold">${statusText}</td>
           <td class="px-6 py-4 flex space-x-2">
-            <button class="text-blue-400 hover:text-blue-300 transition-colors" onclick="editSeat(${seat.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </button>
-            <button class="text-red-400 hover:text-red-300 transition-colors" onclick="deleteSeat(${seat.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+            <button class="text-blue-400 hover:text-blue-300" onclick="editSeat(${s.id},'${s.name}')">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteSeat(${s.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
     }
-
-    function editSeat(id) {
-      const seat = seats.find(s => s.id === id);
-      editSeatId = id;
-      document.getElementById('seatName').value = seat.name;
+    function editSeat(id,name){
+      editSeatId=id;
+      document.getElementById('seatName').value=name;
       showSection('seatsSection');
     }
-
-    function deleteSeat(id) {
-      if (!confirm('Are you sure you want to delete this seat?')) return;
-      seats = seats.filter(s => s.id !== id);
-      localStorage.setItem('seats', JSON.stringify(seats));
-      refreshSeatsTable();
-      refreshSeatOptions();
+    async function deleteSeat(id){
+      if(!confirm('Delete this seat?'))return;
+      await fetch(apiBase+'/api/seats/'+id,{method:'DELETE'});
+      await refreshSeats();
     }
-
-    function refreshSeatOptions() {
-      const seatSelect = document.getElementById('orderSeat');
-      seatSelect.innerHTML = '<option value="">Select Seat</option>';
-      seats.forEach(s => {
-        // Only let user pick from available seats?
-        const option = document.createElement('option');
-        option.value = s.id;
-        option.textContent = s.name;
-        seatSelect.appendChild(option);
-      });
-    }
-
-    /*************************/
-    /*** Cashiers Functions ***/
-    /*************************/
-    const cashierForm = document.getElementById('cashierForm');
-    cashierForm.addEventListener('submit', (e) => {
+    document.getElementById('seatForm').addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const nameInput = document.getElementById('cashierName');
-      const nameValue = nameInput.value.trim();
-      if (!nameValue) return;
+      const seatVal=document.getElementById('seatName').value.trim();
+      if(!seatVal)return;
 
-      if (editCashierId !== null) {
-        const index = cashiers.findIndex(c => c.id === editCashierId);
-        cashiers[index].name = nameValue;
-        editCashierId = null;
+      if(editSeatId){
+        await fetch(apiBase+'/api/seats/'+editSeatId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:seatVal})
+        });
+        editSeatId=null;
       } else {
-        const newCashier = {
-          id: Date.now(),
-          name: nameValue
-        };
-        cashiers.push(newCashier);
+        await fetch(apiBase+'/api/seats',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:seatVal})
+        });
       }
-
-      localStorage.setItem('cashiers', JSON.stringify(cashiers));
-      nameInput.value = '';
-      refreshCashiersTable();
+      document.getElementById('seatName').value='';
+      await refreshSeats();
     });
 
-    function refreshCashiersTable() {
-      const tableBody = document.getElementById('cashiersTable');
-      tableBody.innerHTML = '';
-      cashiers.forEach((cashier, index) => {
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${index + 1}</td>
-          <td class="px-6 py-4">${cashier.name}</td>
+    /***************************************************/
+    /*** 7) Cashiers ***********************************/
+    /***************************************************/
+    let editCashierId=null;
+    async function refreshCashiers(){
+      const res=await fetch(apiBase+'/api/cashiers');
+      cashiersData=await res.json();
+      renderCashiersTable();
+    }
+    function renderCashiersTable(){
+      const tb=document.getElementById('cashiersTable');
+      tb.innerHTML='';
+      cashiersData.forEach((c,idx)=>{
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${idx+1}</td>
+          <td class="px-6 py-4">${c.name}</td>
           <td class="px-6 py-4 flex space-x-2">
-            <button class="text-blue-400 hover:text-blue-300 transition-colors" onclick="editCashier(${cashier.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </button>
-            <button class="text-red-400 hover:text-red-300 transition-colors" onclick="deleteCashier(${cashier.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+            <button class="text-blue-400 hover:text-blue-300" onclick="editCashier(${c.id},'${c.name}')">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteCashier(${c.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
     }
-
-    function editCashier(id) {
-      const cashier = cashiers.find(c => c.id === id);
-      editCashierId = id;
-      document.getElementById('cashierName').value = cashier.name;
+    function editCashier(id,name){
+      editCashierId=id;
+      document.getElementById('cashierName').value=name;
       showSection('cashiersSection');
     }
-
-    function deleteCashier(id) {
-      if (!confirm('Are you sure you want to delete this cashier?')) return;
-      cashiers = cashiers.filter(c => c.id !== id);
-      localStorage.setItem('cashiers', JSON.stringify(cashiers));
-      refreshCashiersTable();
+    async function deleteCashier(id){
+      if(!confirm('Delete this cashier?'))return;
+      await fetch(apiBase+'/api/cashiers/'+id,{method:'DELETE'});
+      await refreshCashiers();
     }
-
-    /**************************/
-    /*** Bookings Functions ****/
-    /**************************/
-    const bookingForm = document.getElementById('bookingForm');
-    bookingForm.addEventListener('submit', (e) => {
+    document.getElementById('cashierForm').addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const nameInput = document.getElementById('bookingName');
-      const dateInput = document.getElementById('bookingDate');
-      const seatsNeededInput = document.getElementById('bookingSeatsNeeded');
+      const nameVal=document.getElementById('cashierName').value.trim();
+      if(!nameVal)return;
 
-      const nameValue = nameInput.value.trim();
-      const dateValue = dateInput.value;
-      const seatsNeeded = parseInt(seatsNeededInput.value);
-
-      if (!nameValue || !dateValue || !seatsNeeded) return;
-
-      // If editing, unreserve previously reserved seats
-      if (editBookingId !== null) {
-        const index = bookings.findIndex(b => b.id === editBookingId);
-        // unreserve old seats
-        bookings[index].reservedSeats.forEach(sid => {
-          const seatObj = seats.find(s => s.id === sid);
-          if (seatObj) {
-            seatObj.isReserved = false;
-          }
+      if(editCashierId){
+        await fetch(apiBase+'/api/cashiers/'+editCashierId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal})
         });
-        bookings[index].reservedSeats = [];
-        localStorage.setItem('seats', JSON.stringify(seats));
-      }
-
-      // Check if enough seats are available
-      const availableSeats = seats.filter(s => !s.isReserved);
-      if (availableSeats.length < seatsNeeded) {
-        alert(`Not enough seats available! We have only ${availableSeats.length} available.`);
-        return;
-      }
-
-      // Reserve seatsNeeded seats
-      const seatsToReserve = availableSeats.slice(0, seatsNeeded);
-      seatsToReserve.forEach(s => {
-        s.isReserved = true;
-      });
-
-      localStorage.setItem('seats', JSON.stringify(seats));
-
-      // Build or update booking
-      if (editBookingId !== null) {
-        // update existing
-        const index = bookings.findIndex(b => b.id === editBookingId);
-        bookings[index].name = nameValue;
-        bookings[index].date = dateValue;
-        bookings[index].seatCount = seatsNeeded;
-        bookings[index].reservedSeats = seatsToReserve.map(x => x.id);
-        editBookingId = null;
+        editCashierId=null;
       } else {
-        const newBooking = {
-          id: Date.now(),
-          name: nameValue,
-          date: dateValue,
-          seatCount: seatsNeeded,
-          reservedSeats: seatsToReserve.map(x => x.id)
-        };
-        bookings.push(newBooking);
+        await fetch(apiBase+'/api/cashiers',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({name:nameVal})
+        });
       }
-
-      localStorage.setItem('bookings', JSON.stringify(bookings));
-
-      nameInput.value = '';
-      dateInput.value = '';
-      seatsNeededInput.value = '';
-      refreshBookingsTable();
-      refreshSeatsTable();
+      document.getElementById('cashierName').value='';
+      await refreshCashiers();
     });
 
-    function refreshBookingsTable() {
-      const tableBody = document.getElementById('bookingsTable');
-      tableBody.innerHTML = '';
-      bookings.forEach((booking, index) => {
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${index + 1}</td>
-          <td class="px-6 py-4">${booking.name}</td>
-          <td class="px-6 py-4">${booking.date}</td>
-          <td class="px-6 py-4 text-indigo-400">${booking.seatCount}</td>
+    /***************************************************/
+    /*** 8) Bookings ***********************************/
+    /***************************************************/
+    let editBookingId=null;
+    async function refreshBookings(){
+      const res=await fetch(apiBase+'/api/bookings');
+      bookingsData=await res.json();
+      renderBookingsTable();
+    }
+    function renderBookingsTable(){
+      const tb=document.getElementById('bookingsTable');
+      tb.innerHTML='';
+      bookingsData.forEach((b,idx)=>{
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${idx+1}</td>
+          <td class="px-6 py-4">${b.name}</td>
+          <td class="px-6 py-4">${b.date}</td>
+          <td class="px-6 py-4 text-indigo-400">${b.seatCount}</td>
           <td class="px-6 py-4 flex space-x-2">
-            <button class="text-blue-400 hover:text-blue-300 transition-colors" onclick="editBooking(${booking.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </button>
-            <button class="text-red-400 hover:text-red-300 transition-colors" onclick="deleteBooking(${booking.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </button>
+            <button class="text-blue-400 hover:text-blue-300" onclick="editBooking(${b.id})">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteBooking(${b.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
     }
-
-    function editBooking(id) {
-      const booking = bookings.find(b => b.id === id);
-      editBookingId = id;
-      document.getElementById('bookingName').value = booking.name;
-      document.getElementById('bookingDate').value = booking.date;
-      document.getElementById('bookingSeatsNeeded').value = booking.seatCount;
+    function editBooking(id){
+      const bk=bookingsData.find(x=>x.id===id);
+      if(!bk)return;
+      editBookingId=id;
+      document.getElementById('bookingName').value=bk.name;
+      document.getElementById('bookingDate').value=bk.date;
+      document.getElementById('bookingSeatsNeeded').value=bk.seatCount;
       showSection('bookingsSection');
     }
-
-    function deleteBooking(id) {
-      if (!confirm('Are you sure you want to delete this booking?')) return;
-      const booking = bookings.find(b => b.id === id);
-      // unreserve seats
-      booking.reservedSeats.forEach(sid => {
-        const seatObj = seats.find(s => s.id === sid);
-        if (seatObj) {
-          seatObj.isReserved = false;
-        }
-      });
-
-      bookings = bookings.filter(b => b.id !== id);
-      localStorage.setItem('bookings', JSON.stringify(bookings));
-      localStorage.setItem('seats', JSON.stringify(seats));
-      refreshBookingsTable();
-      refreshSeatsTable();
+    async function deleteBooking(id){
+      if(!confirm('Delete booking?'))return;
+      await fetch(apiBase+'/api/bookings/'+id,{method:'DELETE'});
+      await refreshBookings();
+      await refreshSeats(); // seats may have been freed
     }
-
-    /****************************/
-    /*** Order Management  ******/
-    /****************************/
-    const orderForm = document.getElementById('orderForm');
-    orderForm.addEventListener('submit', (e) => {
+    document.getElementById('bookingForm').addEventListener('submit',async(e)=>{
       e.preventDefault();
-      const itemSelect = document.getElementById('orderItem');
-      const quantityInput = document.getElementById('orderQuantity');
-      const seatSelect = document.getElementById('orderSeat');
+      const nameVal=document.getElementById('bookingName').value.trim();
+      const dateVal=document.getElementById('bookingDate').value;
+      const seatsNeeded=parseInt(document.getElementById('bookingSeatsNeeded').value);
+      if(!nameVal||!dateVal||!seatsNeeded)return;
 
-      const itemId = parseInt(itemSelect.value);
-      const quantity = parseInt(quantityInput.value);
-      const seatId = parseInt(seatSelect.value);
-
-      if (!itemId || !quantity) return;
-
-      const foundItem = items.find(it => it.id === itemId);
-      const seat = seats.find(s => s.id === seatId);
-
-      // Build order line
-      const orderLine = {
-        id: Date.now(),
-        itemId: itemId,
-        itemName: foundItem.name,
-        price: foundItem.price,
-        quantity: quantity,
-        seatId: seatId,
-        seatName: seat ? seat.name : 'No seat selected',
-        subtotal: foundItem.price * quantity
-      };
-      orders.push(orderLine);
-      refreshOrderItemsTable();
-
-      // Reset form
-      quantityInput.value = 1;
-      itemSelect.value = '';
-      seatSelect.value = '';
+      if(editBookingId){
+        const resp=await fetch(apiBase+'/api/bookings/'+editBookingId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            name:nameVal,
+            date:dateVal,
+            seatCount:seatsNeeded
+          })
+        });
+        if(!resp.ok){
+          let err=await resp.json();
+          alert(err.error||'Error updating booking');
+        }
+        editBookingId=null;
+      } else {
+        const resp=await fetch(apiBase+'/api/bookings',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            name:nameVal,
+            date:dateVal,
+            seatCount:seatsNeeded
+          })
+        });
+        if(!resp.ok){
+          let err=await resp.json();
+          alert(err.error||'Error creating booking');
+        }
+      }
+      e.target.reset();
+      await refreshBookings();
+      await refreshSeats();
     });
 
-    function refreshOrderItemsTable() {
-      const tableBody = document.getElementById('orderItemsTable');
-      tableBody.innerHTML = '';
-      let total = 0;
-      orders.forEach((orderLine) => {
-        total += orderLine.subtotal;
-        const row = document.createElement('tr');
-        row.classList.add('border-b', 'border-gray-700', 'hover:bg-gray-800/30', 'transition-colors');
-        row.innerHTML = `
-          <td class="px-6 py-4">${orderLine.itemName}</td>
-          <td class="px-6 py-4 text-center">${orderLine.quantity}</td>
-          <td class="px-6 py-4">${orderLine.seatName}</td>
-          <td class="px-6 py-4 text-blue-400">$${orderLine.subtotal.toFixed(2)}</td>
-          <td class="px-6 py-4">
-            <button class="text-red-400 hover:text-red-300 transition-colors flex items-center" onclick="removeOrderLine(${orderLine.id})">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-              Remove
-            </button>
+    /***************************************************/
+    /*** 9) Orders *************************************/
+    /***************************************************/
+    let currentOrderLines = [];
+    let currentOrderSeatId = null;
+    let editOrderId = null; // if editing an existing order
+
+    async function refreshOrders(){
+      const res=await fetch(apiBase+'/api/orders');
+      ordersData=await res.json();
+      renderOrdersTable();
+    }
+    function renderOrdersTable(){
+      const tb=document.getElementById('ordersTable');
+      tb.innerHTML='';
+      ordersData.forEach(order=>{
+        const tr=document.createElement('tr');
+        tr.className='border-b border-gray-700 hover:bg-gray-800/30 transition-colors';
+        tr.innerHTML=`
+          <td class="px-6 py-4">${order.id}</td>
+          <td class="px-6 py-4">${order.seatId||'No seat'}</td>
+          <td class="px-6 py-4 text-blue-400">$${order.total.toFixed(2)}</td>
+          <td class="px-6 py-4 flex space-x-2">
+            <button class="text-blue-400 hover:text-blue-300" onclick="editExistingOrder(${order.id})">Edit</button>
+            <button class="text-red-400 hover:text-red-300" onclick="deleteOrder(${order.id})">Delete</button>
           </td>
         `;
-        tableBody.appendChild(row);
+        tb.appendChild(tr);
       });
-      document.getElementById('orderTotal').innerText = '$' + total.toFixed(2);
+    }
+    async function deleteOrder(id){
+      if(!confirm('Delete this order?')) return;
+      await fetch(apiBase+'/api/orders/'+id,{method:'DELETE'});
+      await refreshOrders();
+    }
+    function editExistingOrder(orderId){
+      const ord=ordersData.find(o=>o.id===orderId);
+      if(!ord)return;
+      editOrderId=ord.id;
+      currentOrderLines = ord.lines.map(ln=>({
+        itemId: ln.itemId,
+        itemName: ln.itemName,
+        price: ln.price,
+        quantity: ln.quantity,
+        lineTotal: ln.lineTotal
+      }));
+      currentOrderSeatId=ord.seatId;
+      document.getElementById('orderSeatSelect').value=ord.seatId||'';
+      renderOrderLinesTable();
+      showSection('ordersSection');
     }
 
-    function removeOrderLine(lineId) {
-      orders = orders.filter(o => o.id !== lineId);
-      refreshOrderItemsTable();
+    // build lines
+    const orderLineForm=document.getElementById('orderLineForm');
+    orderLineForm.addEventListener('submit', e=>{
+      e.preventDefault();
+      const sel=document.getElementById('orderItemSelect');
+      const qtyEl=document.getElementById('orderQuantity');
+      const itemId=parseInt(sel.value);
+      if(!itemId)return;
+      const quantity=parseInt(qtyEl.value)||1;
+      const item=itemsData.find(x=>x.id===itemId);
+      if(!item)return;
+      const lineTotal=item.price*quantity;
+      currentOrderLines.push({
+        itemId:item.id,
+        itemName:item.name,
+        price:item.price,
+        quantity,
+        lineTotal
+      });
+      renderOrderLinesTable();
+    });
+    function renderOrderLinesTable(){
+      const tb=document.getElementById('orderLinesTable');
+      tb.innerHTML='';
+      let total=0;
+      currentOrderLines.forEach((ln,idx)=>{
+        total+=ln.lineTotal;
+        const tr=document.createElement('tr');
+        tr.innerHTML=`
+          <td class="py-2">${ln.itemName}</td>
+          <td class="py-2">$${ln.price.toFixed(2)}</td>
+          <td class="py-2">${ln.quantity}</td>
+          <td class="py-2 text-blue-400">$${ln.lineTotal.toFixed(2)}</td>
+          <td class="py-2">
+            <button class="text-red-400 hover:text-red-300" onclick="removeOrderLine(${idx})">Remove</button>
+          </td>
+        `;
+        tb.appendChild(tr);
+      });
+      document.getElementById('orderInProgressTotal').textContent = `$${total.toFixed(2)}`;
     }
-
-    function printOrder() {
-      if (orders.length === 0) {
-        alert("No items in the order to print!");
+    function removeOrderLine(idx){
+      currentOrderLines.splice(idx,1);
+      renderOrderLinesTable();
+    }
+    document.getElementById('orderSeatSelect').addEventListener('change', e=>{
+      currentOrderSeatId = e.target.value ? parseInt(e.target.value): null;
+    });
+    document.getElementById('submitOrderBtn').addEventListener('click', async()=>{
+      if(currentOrderLines.length===0){
+        alert('No items in the order!');
         return;
       }
-      window.print();
+      const linesToSend = currentOrderLines.map(ln=>({
+        itemId: ln.itemId,
+        quantity: ln.quantity
+      }));
+
+      if(editOrderId) {
+        // update existing
+        const resp=await fetch(apiBase+'/api/orders/'+editOrderId,{
+          method:'PUT',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            seatId: currentOrderSeatId,
+            lines: linesToSend
+          })
+        });
+        if(!resp.ok){
+          const err=await resp.json();
+          alert(err.error||'Error updating order');
+        } else {
+          alert('Order updated!');
+          editOrderId=null;
+        }
+      } else {
+        // create new
+        const resp=await fetch(apiBase+'/api/orders',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            seatId: currentOrderSeatId,
+            lines: linesToSend
+          })
+        });
+        if(!resp.ok){
+          const err=await resp.json();
+          alert(err.error||'Error creating order');
+        } else {
+          alert('Order created successfully!');
+        }
+      }
+      // reset
+      currentOrderLines=[];
+      currentOrderSeatId=null;
+      renderOrderLinesTable();
+      document.getElementById('orderSeatSelect').value='';
+      await refreshOrders();
+    });
+    function refreshOrderItemOptions(){
+      const sel=document.getElementById('orderItemSelect');
+      sel.innerHTML='<option value="">Choose Item</option>';
+      itemsData.forEach(it=>{
+        const op=document.createElement('option');
+        op.value=it.id;
+        op.textContent=`${it.name} ($${it.price.toFixed(2)})`;
+        sel.appendChild(op);
+      });
     }
+    function refreshOrderSeatOptions(){
+      const seatSel=document.getElementById('orderSeatSelect');
+      seatSel.innerHTML='<option value="">No seat assigned</option>';
+      seatsData.forEach(s=>{
+        const op=document.createElement('option');
+        op.value=s.id;
+        op.textContent=`${s.name}${s.isReserved?' (Reserved)':''}`;
+        seatSel.appendChild(op);
+      });
+    }
+
+    /***************************************************/
+    /*** 10) DOMContentLoaded: Load All Data **********/
+    /***************************************************/
+    window.addEventListener('DOMContentLoaded', async()=>{
+      showSection('dashboard');  // default
+
+      // Load data from server
+      await refreshCategories();
+      await refreshItems();
+      await refreshSeats();
+      await refreshCashiers();
+      await refreshBookings();
+      await refreshOrders();
+
+      // Fill item & seat options for the Orders form
+      refreshOrderItemOptions();
+      refreshOrderSeatOptions();
+
+      // Update dashboard counters
+      updateDashboard();
+    });
   </script>
 </body>
 </html>
