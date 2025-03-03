@@ -1,6 +1,6 @@
 Here is the **README.md** file content formatted properly:
 
-```markdown
+### **99X Cafe - Management POS**
 
 # **99X Cafe Management System**  
 🚀 A **full-stack** **POS & customer ordering system** for 99X Cafe, built using **Node.js (Express.js)**, **HTML, CSS and JavaScript (for POS Management)** and **Tailwind CSS** for UI.
@@ -70,14 +70,13 @@ npm run dev
 
 ## **🔗 Technologies Used**
 - **Frontend:** HTML, Tailwind CSS, JavaScript (Client-side)
-- **Backend:** Node.js, Express.js, Next.js
-- **Database:** Local Browser Storage
-- **State Management:** Zustand (for POS)
+- **Backend:** Node.js, Express.js, MySQLite3 (Server-side)
+- **Database:** MySQLite3
 
 ---
 
 ## **🚀 Future Enhancements**
-- **Payment Integration** (Stripe, PayPal, Cash on Delivery)
+- **Payment Integration** (Stripe, PayPal, Pay at the cafe)
 - **Customer Loyalty System** (Discounts for returning customers)
 - **Mobile App Support** (PWA or Flutter app)
 
