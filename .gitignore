@@ -43,3 +43,8 @@ coverage/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# db files
+*.sqlite
+*.sqlite3
+*.db
